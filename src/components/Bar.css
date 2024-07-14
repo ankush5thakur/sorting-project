@@ -1,0 +1,81 @@
+.bar {
+  width: 2em;
+  height: 200px;
+  margin: 0 1em;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(-30deg);
+  position: relative;
+}
+
+.side {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(254, 254, 254, 0.25);
+}
+
+.back {
+  transform: translateZ(-4px);
+}
+
+.left {
+  transform-origin: left;
+  transform: rotateY(90deg);
+}
+
+.right {
+  transform-origin: right;
+  transform: rotateY(-90deg);
+}
+
+.bottom {
+  height: 34px;
+  transform-origin: top;
+  background: rgba(255, 0, 128, 0.5);
+  box-shadow: rgba(255, 0, 128, 0.2);
+  transition: 0.3s;
+}
+
+.color-bar {
+  background: rgba(255, 0, 128, 0.5);
+  box-shadow: rgba(255, 0, 128, 0.2);
+  transition: 0.3s;
+}
+
+.input {
+  text-align: center;
+  height: 25px;
+  outline: none;
+}
+
+.quantity-nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: -70px;
+  right: 13px;
+  transform: translateX(50%);
+  width: 32px;
+}
+
+.quantity-button {
+  text-align: center;
+  background: rgba(10, 254, 1, 0.2);
+  margin: 1px 0; /* Vertical margin */
+  cursor: pointer;
+  user-select: none;
+}
+
+.quantity-button:hover {
+  opacity: 0.5;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
