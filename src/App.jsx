@@ -1,7 +1,8 @@
 import { Component } from "react";
 import "./App.css";
-// algo...
 import BubbleSort from "./algorithms/BSort.jsx";
+import insertionSort from "./algorithms/InsertionSort.jsx";
+import SelectionSort from "./algorithms/SelectionSort.jsx";
 import Bar from "./components/Bar.jsx";
 import Play from "@mui/icons-material/PlayCircleOutlineRounded";
 import Forward from "@mui/icons-material/SkipNextRounded";
@@ -16,13 +17,15 @@ class App extends Component {
     colorSteps: [],
     currentStep: 0,
     count: 20,
-    delay: 100,
-    algorithm: "Bubble Sort",
+    delay: 200,
+    algorithm: "Selection Sort",
     timeouts: [],
   };
 
   ALGORITHMS = {
     "Bubble Sort": BubbleSort,
+    "Insertion Sort": insertionSort,
+    "Selection Sort": SelectionSort,
   };
 
   componentDidMount() {
@@ -71,7 +74,6 @@ class App extends Component {
     }
 
     this.setState({ array: temp, arraySteps: [temp], currentStep: 0 }, () => {
-      console.log(this.state.array);
       this.generateSteps();
     });
   };
