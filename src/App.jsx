@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "./App.css";
 import BubbleSort from "./algorithms/BSort.jsx";
-import insertionSort from "./algorithms/InsertionSort.jsx";
+import InsertionSort from "./algorithms/InsertionSort.jsx";
 import SelectionSort from "./algorithms/SelectionSort.jsx";
 import Bar from "./components/Bar.jsx";
 import Play from "@mui/icons-material/PlayCircleOutlineRounded";
@@ -16,26 +16,36 @@ class App extends Component {
     colorKey: [],
     colorSteps: [],
     currentStep: 0,
-    count: 20,
-    delay: 200,
+    count: 10,
+    delay: 1000,
     algorithm: "Selection Sort",
     timeouts: [],
   };
 
   ALGORITHMS = {
     "Bubble Sort": BubbleSort,
-    "Insertion Sort": insertionSort,
+    "Insertion Sort": InsertionSort,
     "Selection Sort": SelectionSort,
   };
 
   componentDidMount() {
     this.generateRandomArray();
   }
-
   generateSteps = () => {
     let array = this.state.array.slice();
     let steps = this.state.arraySteps.slice();
     let colorSteps = this.state.colorSteps.slice();
+
+    // Ensure colorSteps has an initial state
+    if (colorSteps.length === 0) {
+      colorSteps.push(new Array(array.length).fill(0));
+    }
+
+    if (array.length === 0) {
+      console.error("generateSteps: array is empty");
+      return;
+    }
+
     this.ALGORITHMS[this.state.algorithm](array, 0, steps, colorSteps);
 
     this.setState({
@@ -62,7 +72,6 @@ class App extends Component {
   generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
   };
-
   generateRandomArray = () => {
     this.clearTimeouts();
     this.clearColorKey();
@@ -73,9 +82,18 @@ class App extends Component {
       temp.push(this.generateRandomNumber(50, 200));
     }
 
-    this.setState({ array: temp, arraySteps: [temp], currentStep: 0 }, () => {
-      this.generateSteps();
-    });
+    // Initialize colorKey with zeros
+    this.setState(
+      {
+        array: temp,
+        arraySteps: [temp],
+        currentStep: 0,
+        colorKey: new Array(count).fill(0), // Add this line
+      },
+      () => {
+        this.generateSteps();
+      }
+    );
   };
 
   changeArray = (index, value) => {
@@ -114,10 +132,9 @@ class App extends Component {
       colorKey: this.state.colorSteps[currentStep],
     });
   };
-
   start = () => {
-    let steps = this.state.arraySteps;
-    let colorSteps = this.state.colorSteps;
+    const steps = this.state.arraySteps;
+    const colorSteps = this.state.colorSteps;
 
     this.clearTimeouts();
 
@@ -126,12 +143,17 @@ class App extends Component {
 
     while (i < steps.length) {
       let timeout = setTimeout(() => {
-        this.setState((prevState) => ({
-          array: steps[prevState.currentStep],
-          colorKey: colorSteps[prevState.currentStep],
-          currentStep: prevState.currentStep + 1,
-        }));
-      }, this.state.delay * (i - this.state.currentStep));
+        this.setState((prevState) => {
+          // Ensure to use the latest values for currentStep
+          if (prevState.currentStep < steps.length) {
+            return {
+              array: steps[prevState.currentStep],
+              colorKey: colorSteps[prevState.currentStep],
+              currentStep: prevState.currentStep + 1,
+            };
+          }
+        });
+      }, this.state.delay * (i - this.state.currentStep)); // This line needs to reference the updated currentStep
       timeouts.push(timeout);
       i++;
     }
@@ -140,13 +162,27 @@ class App extends Component {
     });
   };
 
+  handleAlgorithmChange = (algorithm) => {
+    this.setState(
+      {
+        algorithm: algorithm,
+        arraySteps: [],
+        colorSteps: [],
+        currentStep: 0,
+      },
+      () => {
+        this.generateSteps();
+      }
+    );
+  };
+
   render() {
     let bars = this.state.array.map((value, index) => (
       <Bar
         key={index}
         index={index}
         length={value}
-        color={this.state.colorKey[index]}
+        color={this.state.colorKey[index] || 0} // Fallback to 0
         changeArray={this.changeArray}
       />
     ));
@@ -180,6 +216,32 @@ class App extends Component {
             {playButton}
             <button className="controller" onClick={this.nextStep}>
               <Forward />
+            </button>
+          </div>
+          <div className="algorithm-buttons">
+            <button
+              className={`controller ${
+                this.state.algorithm === "Bubble Sort" ? "selected" : ""
+              }`}
+              onClick={() => this.handleAlgorithmChange("Bubble Sort")}
+            >
+              Bubble Sort
+            </button>
+            <button
+              className={`controller ${
+                this.state.algorithm === "Insertion Sort" ? "selected" : ""
+              }`}
+              onClick={() => this.handleAlgorithmChange("Insertion Sort")}
+            >
+              Insertion Sort
+            </button>
+            <button
+              className={`controller ${
+                this.state.algorithm === "Selection Sort" ? "selected" : ""
+              }`}
+              onClick={() => this.handleAlgorithmChange("Selection Sort")}
+            >
+              Selection Sort
             </button>
           </div>
         </div>

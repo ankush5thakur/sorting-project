@@ -47,3 +47,59 @@
   justify-content: center;
   align-items: center;
 }
+.controller.selected {
+  background-color: #4caf50;
+  color: white;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.barsDiv {
+  display: flex;
+  align-items: flex-end;
+  height: 500px;
+  width: 80%;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.control-buttons,
+.algorithm-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.controller {
+  margin: 0 5px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controller.selected {
+  background-color: #4caf50;
+}
+
+.controller:hover {
+  background-color: #0056b3;
+}
