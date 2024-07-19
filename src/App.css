@@ -1,3 +1,11 @@
+body {
+  background-color: #000000;
+  background-image: url("https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .App {
   text-align: center;
 }
@@ -9,7 +17,7 @@
 }
 
 .container {
-  margin: 5rem 0;
+  margin: 1.5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,6 +54,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 39px;
 }
 .controller.selected {
   background-color: #4caf50;
@@ -80,20 +89,30 @@
 
 .control-buttons,
 .algorithm-buttons {
+  width: 501px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 12px;
+  background-color: gray;
+  border-radius: 20px;
+  padding: 15px 0px 16px 0px;
+}
+.newOne {
+  justify-content: space-around;
 }
 
 .controller {
-  margin: 0 5px;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
+  width: 120px;
+  margin: 0 6px;
+  /* padding: 10px; */
+  background-color: #7ca7d5;
+  color: rgb(0, 0, 0);
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  text-wrap: nowrap;
+  height: 37px;
 }
 
 .controller.selected {

@@ -218,7 +218,7 @@ class App extends Component {
               <Forward />
             </button>
           </div>
-          <div className="algorithm-buttons">
+          <div className="algorithm-buttons newOne">
             <button
               className={`controller ${
                 this.state.algorithm === "Bubble Sort" ? "selected" : ""

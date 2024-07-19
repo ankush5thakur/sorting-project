@@ -1,6 +1,7 @@
 .bar {
   width: 2em;
-  height: 200px;
+  height: 452px;
+  /* hei-452px */
   margin: 0 1em;
   transform-style: preserve-3d;
   transform: rotateX(-20deg) rotateY(-30deg);
@@ -55,12 +56,12 @@
   bottom: -70px;
   right: 13px;
   transform: translateX(50%);
-  width: 32px;
+  width: 42px;
 }
 
 .quantity-button {
   text-align: center;
-  background: rgba(10, 254, 1, 0.2);
+  background: rgba(64, 240, 0, 0.2);
   margin: 1px 0; /* Vertical margin */
   cursor: pointer;
   user-select: none;

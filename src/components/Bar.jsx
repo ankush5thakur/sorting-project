@@ -28,7 +28,7 @@ function Bar({ index, length, color = 0, changeArray }) {
   };
 
   const Bottom = {
-    transform: `translateY(${200 - len}px) rotateX(-90deg)`,
+    transform: `translateY(${452 - len}px) rotateX(-90deg)`,
     backgroundColor: colors[colorIndex][0],
     boxShadow: `5px 5px 50px 5px ${colors[colorIndex][1]}`,
     transition: "0.3s",
@@ -36,7 +36,7 @@ function Bar({ index, length, color = 0, changeArray }) {
 
   const frontbackrightLeft = {
     height: `${len}px`,
-    transform: `translateY(${200 - len}px)`,
+    transform: `translateY(${452 - len}px)`,
     backgroundColor: colors[colorIndex][0],
     boxShadow: `5px 5px 50px 5px ${colors[colorIndex][1]}`,
     transition: "0.3s",
@@ -50,9 +50,9 @@ function Bar({ index, length, color = 0, changeArray }) {
     } else {
       val = parseInt(val);
       if (!isNaN(val)) {
-        if (val > 200) {
-          setLen(200);
-          changeArray(index, 200);
+        if (val > 452) {
+          setLen(452);
+          changeArray(index, 452);
         } else {
           setLen(val);
           changeArray(index, val);
@@ -62,7 +62,7 @@ function Bar({ index, length, color = 0, changeArray }) {
   };
 
   const handleIncrement = () => {
-    const newLen = Math.min(len + 1, 200);
+    const newLen = Math.min(len + 1, 452);
     setLen(newLen);
     changeArray(index, newLen);
   };
