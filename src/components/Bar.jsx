@@ -108,14 +108,14 @@ function Bar({ index, length, color = 0, changeArray }) {
       </div>
       <div className="quantity-nav">
         <div
-          className="quantity-button quantity-up"
+          className="quantity-button "
           onClick={handleIncrement}
           aria-label="Increase value"
         >
           +
         </div>
         <div
-          className="quantity-button quantity-down"
+          className="quantity-button "
           onClick={handleDecrement}
           aria-label="Decrease value"
         >

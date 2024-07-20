@@ -61,7 +61,7 @@
 
 .quantity-button {
   text-align: center;
-  background: rgba(64, 240, 0, 0.2);
+  background-color: #4caf50;
   margin: 1px 0; /* Vertical margin */
   cursor: pointer;
   user-select: none;
